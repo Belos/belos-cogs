@@ -29,23 +29,7 @@ class PUBG:
     async def _tokenset(self, token: str):
         """Sets token for PUBG Tracker API
         https://pubgtracker.com/site-api"""
-         self.api_key = api_key
-        self.platform = platform
-        self.pubg_url = "https://pubgtracker.com/api/profile/{}/".format(self.platform)
-        self.headers = {
-            'content-type': "application/json",
-            'trn-api-key': api_key,
-        }
-    def player(self, player_handle):
-        """Returns the full set of data on a player, no filtering"""
-        try:
-            url = self.pubg_url + player_handle
-            response = requests.request("GET", url, headers=self.headers)
-            return json.loads(response.text)
-        except BaseException as error:
-            print('Unhandled exception: ' + str(error))
-			raise
-		self.config['PUBG_TOKEN'] = token
+        self.config['PUBG_TOKEN'] = token
         dataIO.save_json('data/pubg/config.json', self.config)
         await self.bot.say('PUBG Tracker API token set')
 
