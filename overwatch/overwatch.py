@@ -3,7 +3,7 @@ from discord.ext import commands
 from random import randint
 import aiohttp
 
-__author__ = "ScarletRav3n"
+__author__ = "Belos"
 
 
 class Overwatch:
@@ -21,10 +21,7 @@ class Overwatch:
         m = ctx.message
         user = username.replace("#", "-")
         url = "https://api.lootbox.eu/"
-        # if "patch" == username.lower():
-        #     await self.patch(ctx)
-        # else:
-        async with aiohttp.ClientSession(headers=self.header) as session:
+		async with aiohttp.ClientSession(headers=self.header) as session:
             if xbox_ps4 is None or xbox_ps4.lower() == "pc":
                 platform = "pc"
                 region = "us"
@@ -93,17 +90,7 @@ class Overwatch:
         em.add_field(name="Lucky Number",
                      value=randint(1, 100))
         await self.bot.send_message(m.channel, embed=em)
-
-    # async def patch(self, ctx):
-    #     m = ctx.message
-    #     url =
-    #     async with aiohttp.ClientSession(headers=self.header) as session:
-    #         async with session.get(url) as notes:
-    #             self.api = await notes.json()
-    #             data = self.api['patchNotes'][0]
-    #             await self.bot.send_message(m.channel, str(data['detail']))
-
-
+ 
 def setup(bot):
     n = Overwatch(bot)
-bot.add_cog(n)
+	bot.add_cog(n)
