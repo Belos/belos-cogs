@@ -57,7 +57,7 @@ class PUBG:
 
             filtered_data = None
             for stat in data['Stats']:
-                if stat['Match'] == game_mode and stat['Region'] == region:
+                if stat['Match'] == mode and stat['Region'] == region:
                     filtered_data = stat
 
             categorized_data = {}
