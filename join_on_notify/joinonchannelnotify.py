@@ -8,19 +8,19 @@ from cogs.utils.dataIO import fileIO
 
 settings = {"Channel": None, "Embed" : False, "joinmessage": None, "leavemessage": None, "leave": False, "botroletoggle": False, "botrole" : None, "join": False, "Invites": {}}
 
-class Welcomer:
+class joinus:
     def __init__(self, bot):
         self.bot = bot
-        self.load = "data/welcomer/settings.json"
+        self.load = "data/joinus/settings.json"
         
         
     @commands.group(pass_context=True, no_pm=True)
-    async def welcomer(self, ctx):
-        """Welcomer modules settings."""
+    async def joinus(self, ctx):
+        """joinus modules settings."""
         if ctx.invoked_subcommand is None:
             await self.bot.send_cmd_help(ctx)
             
-    @welcomer.command(pass_context=True)
+    @joinus.command(pass_context=True)
     async def examples(self, ctx):
         """Shows some examples for settings."""
         msg = """
@@ -42,12 +42,12 @@ Message Examples:
         {0.name} has left {2.name}! Oh no we lost a user! Bye bye {0.name}. Hope you had a good stay!"""
         await self.bot.say("**Here are some examples!**\n\n" + "```css\n" + msg + "```")
         
-    @welcomer.command(pass_context=True)
+    @joinus.command(pass_context=True)
     async def status(self, ctx):
-        """Shows the servers settings for welcomer."""
+        """Shows the servers settings for joinus."""
         db = fileIO(self.load, "load")
         if ctx.message.server.id not in db:
-            await self.bot.say(":x: **Interview welcomer has not been configured for this server, use `interview channel` first**")
+            await self.bot.say(":x: **Interview joinus has not been configured for this server, use `interview channel` first**")
             return
         server = ctx.message.server
         color = ''.join([choice('0123456789ABCDEF') for x in range(6)])
@@ -68,9 +68,9 @@ Message Examples:
         except Exception as e:
             await self.bot.say(e)
         
-    @welcomer.command(pass_context=True)
+    @joinus.command(pass_context=True)
     async def channel(self, ctx, *, channel : discord.Channel=None):
-        """Sets the welcomer channel settings."""
+        """Sets the joinus channel settings."""
         if channel is None:
             channel = ctx.message.channel
         server = ctx.message.server
@@ -93,9 +93,9 @@ Message Examples:
                 fileIO(self.load, "save", db)
                 await self.bot.say("Channel set.")
                 
-    @welcomer.command(pass_context=True)
+    @joinus.command(pass_context=True)
     async def joinmessage(self, ctx, *, message : str):
-        """Sets welcomer joinmessage setting."""
+        """Sets joinus joinmessage setting."""
         server = ctx.message.server
         db = fileIO(self.load, "load")
         if ctx.message.server.id not in db:
@@ -111,9 +111,9 @@ Message Examples:
             await self.bot.say("Join message has been set.")
             
             
-    @welcomer.command(pass_context=True)
+    @joinus.command(pass_context=True)
     async def leavemessage(self, ctx, *, message : str):
-        """Sets the welcomer leavemessage setting."""
+        """Sets the joinus leavemessage setting."""
         server = ctx.message.server
         db = fileIO(self.load, "load")
         if ctx.message.server.id not in db:
@@ -128,9 +128,9 @@ Message Examples:
             fileIO(self.load, "save", db)
             await self.bot.say("leave message has been set.")
         
-    @welcomer.command(pass_context=True)
+    @joinus.command(pass_context=True)
     async def botrole(self, ctx, *, role : discord.Role):
-        """Sets the welcomer bot role setting."""
+        """Sets the joinus bot role setting."""
         server = ctx.message.server
         db = fileIO(self.load, "load")
         if not server.id in db:
@@ -143,16 +143,16 @@ Message Examples:
         else:
             await self.bot.say("I do not have the `manage_roles` permission!")
         
-    @welcomer.command(pass_context=True)
+    @joinus.command(pass_context=True)
     async def botroletoggle(self, ctx):
-        """Toggles the bot role setting for welcomer."""
+        """Toggles the bot role setting for joinus."""
         server = ctx.message.server
         db = fileIO(self.load, "load")
         if not server.id in db:
             await self.bot.say(":x: **Please set the channel you want me to send interview and leaving messages to with\n`interview channel #channel_name`\nthen you may proceed to setting this message.**")
             return
         if db[server.id]['botroletoggle'] is None:
-            await self.bot.say("botroletoggle not found set it with `{}welcomer botroletoggle`.".format(ctx.prefix))
+            await self.bot.say("botroletoggle not found set it with `{}joinus botroletoggle`.".format(ctx.prefix))
         if db[server.id]["botroletoggle"] is False:
             db[server.id]["botroletoggle"] = True
             fileIO(self.load, "save", db)
@@ -162,9 +162,9 @@ Message Examples:
             fileIO(self.load, "save", db)
             await self.bot.say("Bot role disabled.")
 
-    @welcomer.command(pass_context=True)
+    @joinus.command(pass_context=True)
     async def embed(self, ctx):
-        """Toggles the bot role setting for welcomer."""
+        """Toggles the bot role setting for joinus."""
         server = ctx.message.server
         db = fileIO(self.load, "load")
         if not server.id in db:
@@ -179,9 +179,9 @@ Message Examples:
             fileIO(self.load, "save", db)
             await self.bot.say("Embeds disabled")
         
-    @welcomer.command(pass_context=True)
+    @joinus.command(pass_context=True)
     async def togglel(self, ctx):
-        """Toggles the leave message for welcomer."""
+        """Toggles the leave message for joinus."""
         server = ctx.message.server
         db = fileIO(self.load, "load")
         if not server.id in db:
@@ -196,9 +196,9 @@ Message Examples:
             fileIO(self.load, "save", db)
             await self.bot.say("leave messages disabled.")
             
-    @welcomer.command(pass_context=True)
+    @joinus.command(pass_context=True)
     async def togglej(self, ctx):
-        """Toggles the join message for welcomer."""
+        """Toggles the join message for joinus."""
         server = ctx.message.server
         db = fileIO(self.load, "load")
         if db[server.id]["join"] is False:
@@ -210,9 +210,9 @@ Message Examples:
             fileIO(self.load, "save", db)
             await self.bot.say("join messages disabled.")
         
-    @welcomer.command(pass_context=True)
+    @joinus.command(pass_context=True)
     async def disable(self, ctx):
-        """Disables the welcomer."""
+        """Disables the joinus."""
         server = ctx.message.server
         db = fileIO(self.load, "load")
         if not server.id in db:
@@ -290,13 +290,13 @@ Message Examples:
             await self.bot.send_message(server.get_channel(channel), message.format(member, server))
         
 def check_folder():
-    if not os.path.exists('data/welcomer'):
-        print('Creating data/welcomer folder...')
-        os.makedirs('data/welcomer')
+    if not os.path.exists('data/joinus'):
+        print('Creating data/joinus folder...')
+        os.makedirs('data/joinus')
 
 
 def check_file():
-    f = 'data/welcomer/settings.json'
+    f = 'data/joinus/settings.json'
     if not fileIO(f, 'check'):
         print('Creating default settings.json...')
         fileIO(f, 'save', {})
@@ -304,5 +304,6 @@ def check_file():
 def setup(bot):
     check_folder()
     check_file()
-    n = Welcomer(bot)
-bot.add_cog(n)
+    n = joinus(bot)
+def setup(bot):
+	bot.add_cog(n)
