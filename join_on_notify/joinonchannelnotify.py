@@ -28,7 +28,7 @@ Set a message when a user joins
     {0} is the user.
     {1} is the invite.
     {2} is the server.
-	{3} is interview
+    {3} is interview
 Example formats:
     {0.mention} this will mention the user.
     {0.name} this will only say the users name.
@@ -306,4 +306,4 @@ def setup(bot):
     check_file()
     n = joinus(bot)
 def setup(bot):
-	bot.add_cog(n)
+    bot.add_cog(n)
