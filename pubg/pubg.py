@@ -160,4 +160,4 @@ def setup(bot):
     check_folder()
     check_file()
 def setup(bot):
-	bot.add_cog(PUBG(bot))
+    bot.add_cog(PUBG(bot))
