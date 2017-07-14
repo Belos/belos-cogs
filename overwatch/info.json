@@ -1,8 +1,9 @@
 {
-    "AUTHOR" : "Belos",
+    "AUTHOR" : "ScarletRaven",
     "DESCRIPTION" : "Player Statistics for Overwatch. Pulls up your average stats and more.",
     "DISABLED" : false,
-    "INSTALL_MSG" : "Thanks for adding my repo! hope you find any of my cogs cool",
+    "TAGS" : ["fun", "tool", "gaming", "api", "statistics"],
+    "INSTALL_MSG" : "This cog is meant to view player statistics. \nIt is caps-sensitive.",
     "NAME" : "Overwatch",
     "SHORT" : "Overwatch Statistics"
 }
